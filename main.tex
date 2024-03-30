@@ -1,0 +1,70 @@
+\documentclass{article}
+\usepackage{amsmath, amssymb, amsfonts, amsthm}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{tikz}
+\usepackage{tikz-qtree}
+\usepackage[margin=2.5cm]{geometry}
+
+
+\newtheorem{Corollary}{Corollary}
+\newcommand{\classX}[1]{\ensuremath{\text{\textsf{\textbf{#1}}}}} 
+\newcommand{\classP}{\classX{P}}
+\newcommand{\classNP}{\classX{NP}}
+\newcommand{\NPC}{\classX{NP-complete}}
+\newcommand{\coNP}{\classX{coNP}}
+\newcommand{\EXP}{\classX{EXP}}
+\newcommand{\coEXP}{\classX{coEXP}}
+\newcommand{\PSPACE}{\classX{PSPACE}}
+\newcommand{\NPH}{\classX{NP-hard}}
+
+\newcommand{\MAD}{\ensuremath{\text{\textit{MAD}}}}
+\newcommand{\Prob}[1]{\ensuremath{\text{\textsc{#1}}}}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{proposition}{Proposition}
+
+\begin{document}
+
+\title{A meta-heuristic approach for graph genus problem}
+\author{Syed Mujtaba Hassan\footnote{\url{ms06948@st.habib.edu.pk}, Computer Science Department, Habib University, Karachi, Pakistan (corresponding author)} \and Sudais Yasin \footnote{\url{sy06541@st.habib.edu.pk}, Computer Science Department, Habib University, Karachi, Pakistan}}
+\date{March 26, 2024}
+\maketitle
+
+
+% \begin{abstract}
+%     In this paper, we introduce a class of graphs which we call \emph{average hereditary graphs}. Most graphs that occur in the usual graph theory applications belong to this class of graphs. Many popular types of graphs fall under this class, such as regular graphs, trees and other popular classes of graphs. 
+%     We prove a new upper bound for the chromatic number of a graph in terms of its maximum average degree and show that this bound is an improvement on previous bounds. From this, we show a relationship between the average degree and the chromatic number of an \textit{average hereditary graph}. This class of graphs is explored further by proving some interesting properties regarding the class of \emph{average hereditary graphs}. 
+%     An equivalent condition is provided for a graph to be \textit{average hereditary}, through which we show that we can decide if a given graph is \textit{average hereditary} in polynomial time. We then provide a construction for \textit{average hereditary graphs}, using which an average hereditary graph can be recursively constructed. We also show that this class of graphs is closed under a binary operation, from this another construction is obtained for \textit{average hereditary graphs}, and we see some interesting algebraic properties this class of graphs has. We then explore the effect on the complexity of graph \Prob{3-coloring} problem when the input is restricted to \emph{average hereditary graphs}. \smallskip
+
+%     \noindent\textbf{Keywords:} Graph theory, graph coloring, NP-Hard graph problem, graph average degree
+% \end{abstract}
+
+
+\renewcommand\thefootnote{}
+
+
+\renewcommand\thefootnote{\fnsymbol{footnote}}
+\setcounter{footnote}{1}
+\section{Introduction}
+
+\section{Preliminaries}
+Throughout this document, we will denote a graph as $G = (V, E)$ where $G$ is a graph with vertex set $V$ and edge set $E$. An edge is represented as a set $\{v,u\}$ for some $v$ and $u$ belonging to $V$ such that $v \neq u$. Also, for a graph $G$ we use $V(G)$ to denote the vertex set of $G$ and $E(G)$ to denote the edge set of $G$. All graphs considered here are undirected and simple meaning they contain no loops, multi-edges or directed edges. We will use $H \subseteq G$ to denote an induced subgraph of $G$. For some $U \subseteq V$, $G-U$ denotes the subgraph of $G$ obtained by removing the vertices in $U$. For $H \subseteq G$, \;$\overline{H}$ denote the graph $G-V(H)$. For each vertex $v\in V$ we used $d_G(v)$ to denote the degree of $v$ in $G$. We also use $\Delta(G)$ to denote the maximum degree of $G$ and $\delta(G)$ to denote the minimum degree of $G$. The average degree of $G$, denoted by $d(G)$ is the average of all the degrees of $G$, which can be computed by $d(G) = \frac{\sum_{v\in V}d_G(v)}{|V|}= \frac{2|E|}{|V|}$ if $V$ is nonempty. For a null graph, we define the average degree as 0. If the degrees of all the vertices of a graph $G$ are equal to $k$, we say $G$ is $k$-regular.
+% A graph is said to be $k$-regular if the degree of all the vertices in it is equal to $k$.
+ 
+The edge cut $[V(H),\overline{V(H)}]$ is the smallest set of edges you need to remove from $G$ to break $G$ into two components $H$ and $\overline{H}$, for $H \subseteq G$. The edge connectivity is the size of the smallest cut edge, denoted by $\kappa'(G)$. If a graph $G'$ is constructed by adding a vertex $x$ to $G$ and connecting $x$ to some $v \in V$ and all the neighbors of $v$, we say $G'$ is obtained from $G$ by expanding $v$ to an edge $\{v,x\}$. We denote this as $G' = G\text{exp}(v,x)$. The join of two graphs $G$ and $H$ is a graph $K$ such that $K$ contains all the edges and vertices of $G$ and $H$ and in $K$, each vertex in $G$ is connected to every vertex in $H$. We denote this as $K = G \land H$. The clique size is the size of the largest complete subgraph of $G$, we denote it by $\omega(G)$. 
+
+Coloring a graph $G$ is assigning a color to each vertex of $G$ such that if two vertices are adjacent then they are assigned a different color than each other. The smallest natural number $k$ such that $G$ can be colored with $k$ colors is known as the chromatic number of $G$. We denote the chromatic number of $G$ by $\chi(G)$.
+If $k = \chi(G)$ then we say $G$ is $k$-chromatic. $G$ is called $k$-critical if $\chi(G) = k$ and $\forall v \in V,\; \chi(G-v) < k$. $\mathbb{N}$ denotes the set of natural numbers which includes $0$.
+
+
+\section{Problem statement}
+
+
+\bibliographystyle{plain} 
+\bibliography{ref}
+
+
+\end{document}
+
