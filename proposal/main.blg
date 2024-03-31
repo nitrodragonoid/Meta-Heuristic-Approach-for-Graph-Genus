@@ -1,0 +1,51 @@
+This is BibTeX, Version 0.99d (TeX Live 2022)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: main.aux
+The style file: plain.bst
+Database file #1: ref.bib
+Repeated entry---line 202 of file ref.bib
+ : @book{Munkres00
+ :                ,
+I'm skipping whatever remains of this entry
+You've used 15 entries,
+            2118 wiz_defined-function locations,
+            599 strings with 5844 characters,
+and the built_in function-call counts, 3883 in all, are:
+= -- 367
+> -- 150
+< -- 0
++ -- 68
+- -- 46
+* -- 222
+:= -- 682
+add.period$ -- 47
+call.type$ -- 15
+change.case$ -- 62
+chr.to.int$ -- 0
+cite$ -- 15
+duplicate$ -- 168
+empty$ -- 347
+format.name$ -- 46
+if$ -- 811
+int.to.chr$ -- 0
+int.to.str$ -- 15
+missing$ -- 20
+newline$ -- 78
+num.names$ -- 30
+pop$ -- 83
+preamble$ -- 1
+purify$ -- 53
+quote$ -- 0
+skip$ -- 103
+stack$ -- 0
+substring$ -- 176
+swap$ -- 16
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 48
+warning$ -- 0
+while$ -- 36
+width$ -- 17
+write$ -- 161
+(There was 1 error message)
