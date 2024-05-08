@@ -154,26 +154,20 @@ class EA:
     
     
     def ranked(self):
-        
         pop = self.population.copy()
-        sor = sorted(pop.keys(), key=lambda x: pop[x])
-        # sor.reverse()
-        
-        individuals =  list(self.population.keys())
+        sor = sorted(pop.keys(), key=lambda x: pop[x], reverse=True)  # Sort by fitness, descending
+
+        individuals = list(self.population.keys())
         
         n = len(individuals)
-        total_weight = (n*(n+1))/2
+        total_weight = (n*(n+1)) / 2
         
-        
-        c = []
-        for i in range(len(individuals)):
-            c.append(i)
-        
-        relative_fitness= [i/total_weight for i in c]
+        c = list(range(n))
+        relative_fitness = [(i+1) / total_weight for i in range(n)]  # Weights are now correctly ordered
         
         win = choice(c, 1, p=relative_fitness)
-
         return individuals[win[0]]
+
 
     def tournament(self, size):
         participants = {}
@@ -795,6 +789,6 @@ Test = EA({
     7: [2,6,8],
     8: [3,7,9],
     9: [4,8,0]
-}, size = 100, generations = 100, offsprings =  20, rate = 0.5, parent_scheme = 1, surviver_scheme = 4, tournament_size= 10)
+}, size = 100, generations = 100, offsprings =  20, rate = 0.5, parent_scheme = 2, surviver_scheme = 4, tournament_size= 10)
 # Test.get_data("qa194.tsp")
 Test.evolution()
