@@ -185,10 +185,10 @@ class EA:
     
     def truncation(self,sols):
         winner = sols[0]
-        min = math.inf
+        max = 0
         for i in sols:
-            if self.population[i] < min:
-                min = self.population[i]
+            if self.population[i] > max:
+                max = self.population[i]
                 winner = i
         return winner
     
