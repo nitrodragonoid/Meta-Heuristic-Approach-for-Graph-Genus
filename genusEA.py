@@ -228,12 +228,25 @@ class EA:
                 
         return self.population
     
-    def create_offsprings_ranked(self):
-        pop = self.population.copy()
-        sor = sorted(pop.keys(), key=lambda x: pop[x])
-        # sor.reverse()
+        # pop = self.population.copy()
+        # sor = sorted(pop.keys(), key=lambda x: pop[x], reverse=True)  # Sort by fitness, descending
+
+        # individuals = list(self.population.keys())
         
-        individuals =  list(self.population.keys())
+        # n = len(individuals)
+        # total_weight = (n*(n+1)) / 2
+        
+        # c = list(range(n))
+        # relative_fitness = [(i+1) / total_weight for i in range(n)]  # Weights are now correctly ordered
+        
+        # win = choice(c, 1, p=relative_fitness)
+        # return individuals[win[0]]
+    def create_offsprings_ranked(self):
+        
+        pop = self.population.copy()
+        sor = sorted(pop.keys(), key=lambda x: pop[x], reverse=True)  # Sort by fitness, descending
+
+        individuals = list(self.population.keys())
         
         n = len(individuals)
         total_weight = (n*(n+1))/2
@@ -797,8 +810,36 @@ k7 = {
     5: [0,1,2,3,4,6],
     6: [0,1,2,3,4,5],
 }
-        
-Test = EA( k7, size = 100, generations = 100, offsprings =  20, rate = 0.5, parent_scheme = 1, surviver_scheme = 4, tournament_size= 10)
+       
+       
+k8 = {
+    0: [1,2,3,4,5,6,7],
+    1: [0,2,3,4,5,6,7],
+    2: [0,1,3,4,5,6,7],
+    3: [0,1,2,4,5,6,7],
+    4: [0,1,2,3,5,6,7],
+    5: [0,1,2,3,4,6,7],
+    6: [0,1,2,3,4,5,7],
+    7: [0,1,2,3,4,5,6]
+}
+       
+       
+k4 = {
+    0: [1,3,2],
+    1: [2,3,0],
+    2: [0,3,1],
+    3: [2,0,1]
+}
+ 
+k5 = {
+    0: [1,3,2,4],
+    1: [2,3,0,4],
+    2: [0,3,1,4],
+    3: [2,0,1,4],
+    4: [1,3,2,0]
+}
+
+Test = EA( k8, size = 100, generations = 1000, offsprings =  20, rate = 0.7, parent_scheme = 1, surviver_scheme = 4, tournament_size= 10)
 # Test.get_data("qa194.tsp")
 Test.evolution()
 
