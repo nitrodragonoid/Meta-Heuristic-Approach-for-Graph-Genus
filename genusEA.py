@@ -3,7 +3,7 @@ import math
 from numpy.random import choice   
 import matplotlib.pyplot as plt
 import numpy as np
-
+# import sage
 
 def permutation(lst):
     
@@ -783,9 +783,7 @@ class EA:
         
 # size = 30, generations = 50 , offsprings =  10, rate = 0.5, iteration = 10, mutation = 1, parent_scheme = 1, surviver_scheme = 1
     
-        
-Test = EA({
-    0: [5,6,9],
+petersen = {0: [5,6,9],
     1: [3,4,6],
     2: [4,5,7],
     3: [1,5,8],
@@ -794,7 +792,19 @@ Test = EA({
     6: [1,7,0],
     7: [2,6,8],
     8: [3,7,9],
-    9: [4,8,0]
-}, size = 100, generations = 100, offsprings =  20, rate = 0.5, parent_scheme = 1, surviver_scheme = 4, tournament_size= 10)
+    9: [4,8,0]}
+
+k7 = {
+    0: [1,2,3,4,5,6],
+    1: [0,2,3,4,5,6],
+    2: [0,1,3,4,5,6],
+    3: [0,1,2,4,5,6],
+    4: [0,1,2,3,5,6],
+    5: [0,1,2,3,4,6],
+    6: [0,1,2,3,4,5],
+}
+        
+Test = EA( k7, size = 100, generations = 100, offsprings =  20, rate = 0.5, parent_scheme = 1, surviver_scheme = 4, tournament_size= 10)
 # Test.get_data("qa194.tsp")
 Test.evolution()
+
