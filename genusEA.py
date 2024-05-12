@@ -505,7 +505,12 @@ class EA:
         self.initialize_population()
         for g in range(self.generation):
             print(g)
-
+            if g == 0:
+                embedding, faces = self.best()
+                print("Embbedding is:",embedding)
+                print("Number of faces are:",faces)
+                print("Genus od embedding is:",self.EulerianCharacteristics(self.graph,faces))
+        
             if self.parent_scheme == 1:
                 self.create_offsprings_fitness_proportional()
             elif self.parent_scheme == 2:
@@ -839,7 +844,7 @@ k5 = {
     4: [1,3,2,0]
 }
 
-Test = EA( k8, size = 100, generations = 1000, offsprings =  20, rate = 0.7, parent_scheme = 1, surviver_scheme = 4, tournament_size= 10)
+Test = EA( petersen, size = 100, generations = 1000, offsprings =  20, rate = 0.7, parent_scheme = 1, surviver_scheme = 4, tournament_size= 10)
 # Test.get_data("qa194.tsp")
 Test.evolution()
 

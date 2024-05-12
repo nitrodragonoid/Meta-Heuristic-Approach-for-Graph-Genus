@@ -1,0 +1,83 @@
+\begin{thebibliography}{10}
+
+\bibitem{Beyer16}
+Stephan Beyer, Markus Chimani, Ivo Hedtke, and Michal Kotrbc{\'i}k.
+\newblock A practical method for the minimum genus of a graph: Models and
+  experiments.
+\newblock In {\em The Sea}, 2016.
+
+\bibitem{brinkmann20}
+G.~Brinkmann.
+\newblock A practical algorithm for the computation of the genus, 2020.
+
+\bibitem{Conder19}
+Marston Conder and Klara Stokes.
+\newblock New methods for finding minimum genus embeddings of graphs on
+  orientable and non-orientable surfaces.
+\newblock {\em Ars Mathematica Contemporanea}, 17:1--35, 06 2019.
+
+\bibitem{Diestel97}
+Reinhard Diestel.
+\newblock {\em Reinhard Diestel Graph Theory Electronic Edition 2017.}
+\newblock Springer-Verlag Heidelberg, 1997.
+
+\bibitem{Dudeney17}
+H.E. Dudeney.
+\newblock {\em Amusements in Mathematics}.
+\newblock Thomas Nelson, London, 1917.
+
+\bibitem{Filotti79}
+I.~S. Filotti, Gary~L. Miller, and John~H. Reif.
+\newblock On determining the genus of a graph in o(v o(g)) steps(preliminary
+  report).
+\newblock {\em Proceedings of the eleventh annual ACM symposium on Theory of
+  computing}, 1979.
+
+\bibitem{GareyJohnson90}
+Michael~R. Garey and David~S. Johnson.
+\newblock {\em Computers and Intractability; A Guide to the Theory of
+  NP-Completeness}.
+\newblock W. H. Freeman \& Co., USA, 1990.
+
+\bibitem{Kullman79}
+David~E. Kullman.
+\newblock The utilities problem.
+\newblock {\em Mathematics Magazine}, 52(5):299--302, 1979.
+
+\bibitem{Massey91}
+W.S. Massey.
+\newblock {\em A Basic Course in Algebraic Topology}.
+\newblock Graduate Texts in Mathematics. Springer New York, 1991.
+
+\bibitem{Munkres00}
+J.R. Munkres.
+\newblock {\em Topology}.
+\newblock Featured Titles for Topology. Prentice Hall, Incorporated, 2000.
+
+\bibitem{Myrvold11}
+Wendy Myrvold and William Kocay.
+\newblock Errors in graph embedding algorithms.
+\newblock {\em Journal of Computer and System Sciences}, 77(2):430--438, 2011.
+\newblock Adaptivity in Heterogeneous Environments.
+
+\bibitem{Thomassen89}
+Carsten Thomassen.
+\newblock The graph genus problem is np-complete.
+\newblock {\em Journal of Algorithms}, 10(4):568--576, 1989.
+
+\bibitem{Thomassen97}
+Carsten Thomassen.
+\newblock The genus problem for cubic graphs.
+\newblock {\em Journal of Combinatorial Theory, Series B}, 69(1):52--58, 1997.
+
+\bibitem{Liangxia23}
+Liangxia Wan.
+\newblock The genus of a graph: A survey.
+\newblock {\em Symmetry}, 15(2), 2023.
+
+\bibitem{West01}
+Douglas~Brent West.
+\newblock {\em Introduction to Graph Theory.}
+\newblock Prentice Hall, 2001.
+
+\end{thebibliography}
