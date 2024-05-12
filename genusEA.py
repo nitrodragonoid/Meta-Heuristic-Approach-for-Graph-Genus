@@ -504,8 +504,10 @@ class EA:
     
     def evolution(self):
         self.initialize_population()
+        best_so_far = []
+        avg_so_far = []
         for g in range(self.generation):
-            print(g)
+            print(g, self.best())
             if g == 0:
                 embedding, faces = self.best()
                 print("Embbedding is:",embedding)
@@ -534,11 +536,27 @@ class EA:
                 self.survivers_truncation()
             else:
                 self.survivers_random_selection()
-          
+
+            current_best, current_max_fitness = self.best()
+            current_avg_fitness = self.average_fitness()
+            best_so_far.append(self.EulerianCharacteristics(self.graph, current_max_fitness))
+            avg_so_far.append(self.EulerianCharacteristics(self.graph, current_avg_fitness))
+
         embedding, faces = self.best()
         print("Embbedding is:",embedding)
         print("Number of faces are:",faces)
         print("Genus od embedding is:",self.EulerianCharacteristics(self.graph,faces))
+
+        generations = np.arange(1, self.generation + 1)
+        plt.figure(figsize=(10, 5))
+        plt.plot(generations, best_so_far, label='Best Fitness So Far', color='red')
+        plt.plot(generations, avg_so_far, label='Average Fitness So Far', color='blue')
+        plt.title('Fitness Over Generations')
+        plt.xlabel('Generation')
+        plt.ylabel('Fitness')
+        plt.legend()
+        plt.grid(True)
+        plt.show()
         
     def average_fitness(self):
         total = 0
