@@ -285,7 +285,6 @@ def faceTracing(G, rotation):
     unused = D
     arc = unused[0]
     start = arc
-    # unused.remove(arc)
     while len(unused) > 0:
         unused.remove(arc)
         if arc[0] != rotation[arc[1]][-1]:
@@ -299,6 +298,7 @@ def faceTracing(G, rotation):
                 break
             arc = unused[0]
             start = arc
+    # return faces
     print(faces)
             
         
@@ -313,4 +313,20 @@ faceTracing(K4, K4)
     # for arc in unused:
         
         
+def faceTracing(Graph, rotation_system):
+    D = list(getDirEdges(Graph))
+    faces = 0 
+    unused = D
+    arc = unused[0]
+    start = arc
+    while len(unused) > 0:
+        unused.remove(arc)
+        arc = (arc[1], rotation_system[arc[1]][(rotation_system[arc[1]].index(arc[0]) + 1)%len(rotation_system[arc[1]])])
+        if arc == start:
+            faces+=1
+            if len(unused) <= 0:
+                break
+            arc = unused[0]
+            start = arc
+    return faces
     

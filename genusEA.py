@@ -84,10 +84,11 @@ class EA:
         start = arc
         while len(unused) > 0:
             unused.remove(arc)
-            if arc[0] != rotation[arc[1]][-1]:
-                arc = (arc[1], rotation[arc[1]][rotation[arc[1]].index(arc[0]) + 1])
-            else:
-                arc = (arc[1], rotation[arc[1]][0])
+            arc = (arc[1], rotation[arc[1]][(rotation[arc[1]].index(arc[0]) + 1)%len(rotation[arc[1]])])
+            # if arc[0] != rotation[arc[1]][-1]:
+            #     arc = (arc[1], rotation[arc[1]][rotation[arc[1]].index(arc[0]) + 1])
+            # else:
+            #     arc = (arc[1], rotation[arc[1]][0])
 
             if arc == start:
                 faces+=1

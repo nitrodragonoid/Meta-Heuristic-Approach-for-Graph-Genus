@@ -5,6 +5,34 @@
 \usepackage{tikz}
 \usepackage{tikz-qtree}
 \usepackage[margin=2.5cm]{geometry}
+\usepackage{listings}
+\usepackage{xcolor}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+
+\lstset{style=mystyle}
 
 
 \newtheorem{Corollary}{Corollary}
@@ -64,7 +92,7 @@
     Unless specified, all graphs considered here are undirected and simple meaning they contain no loops, multi-edges or directed edges. 
     For each vertex $v\in V$ we used $d_G(v)$ to denote the degree of $v$ in $G$. We also use $\Delta(G)$ to denote the maximum degree of $G$ and $\delta(G)$ to denote the minimum degree of $G$. 
     An isomorphism between graphs $G = (V, E)$ and $G' = (V', E')$ is a bijection $f : V \to V'$ such that $\forall v, u \in V,\; \{v, u\} \in E \iff  \{f(v), f(u)\} \in E'$ \cite{Diestel97, West01}. For a vertex $v \in V$, $N(v)$ denotes the set of neighbors of $v$ \cite{Diestel97}. 
-    For a graph $G = (V, E)$, $D(G)$ denotes the directed graph obtained from $G$ such that 
+    For a graph $G = (V, E)$, $D(G)$ denotes the directed graph obtained from $G$ such that $V(D(G))$ and $E(D(G)) = \{(u,v), (v,u)|\{u,v\} \in E\}$. So we replace every undirected edge in $G$ with a directed edge in $D(G)$.
     A rotation at a vertex $v$ is a cyclic order (counter-clockwise) of the neighbors of $v$. A rotation system $R$ of a graph $G$ is a set of rotations for each vertex $v \in V$ \cite{Beyer16}.
     A directed graph is a graph $G  = (V, E)$ where edges have direction, so an edge from $v$ to $u$ is represented as $(v, u)$, for $v,u \in V$. In a directed graph for a vertex $v \in V$, $d^+(v)$ denotes the out going edges of $v$ and $d^-(v)$ incoming edges on $v$.
     % We shall use the terms ``abstract graph'' and ``graph'' interchangeably, whenever we use the term ``graph'' we are referring to an abstract graph.
@@ -160,7 +188,28 @@
     However many other valid formulation exists, for example, the formulation given by G. Brinkmann \cite{brinkmann20}, Marston Conder and Klara Stokes \cite{Conder19}, Stephan Beyer and Markus Chimani and Ivo Hedtke and Michal Kotrbcik \cite{Beyer16}, among others.
     
     For our approach, we solely consider combinatorial embeddings. For a graph $G = (V, E)$
-    A combinatorial embedding is given by a rotation system $R$ defined on $G$.
+    A combinatorial embedding is given by a rotation system $R$ defined on $D(G)$. Let $P$ be the set of all rotation systems on $D(G)$, in other words, $P$ is the set of all permutations on $N(v)$ for each $v\in V$.
+    Let $F: P \to \mathbb{N}$ be a computable function such that given a rotation system $R$ maps the number of faces in the embedding given by $R$. Listing~\ref{facetrace} gives an algorithm that computes $F$. The algorithm runs in $O(|E|)$
+
+\begin{lstlisting}[language=Python, caption = Facetracing Algorithm, label= facetrace]
+    def faceTracing(Graph, rotation_system):
+    D = list(getDirEdges(Graph))
+    faces = 0 
+    unused = D
+    arc = unused[0]
+    start = arc
+    while len(unused) > 0:
+        unused.remove(arc)
+        arc = (arc[1], rotation_system[arc[1]][(rotation_system[arc[1]].index(arc[0]) + 1)%len(rotation_system[arc[1]])])
+        if arc == start:
+            faces+=1
+            if len(unused) <= 0:
+                break
+            arc = unused[0]
+            start = arc
+    return faces
+\end{lstlisting}
+From this we obtained
 
 \section{Experimental Evaluation}\label{sec: exp}
 
