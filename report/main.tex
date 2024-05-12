@@ -189,18 +189,23 @@
     
     For our approach, we solely consider combinatorial embeddings. For a graph $G = (V, E)$
     A combinatorial embedding is given by a rotation system $R$ defined on $D(G)$. Let $P$ be the set of all rotation systems on $D(G)$, in other words, $P$ is the set of all permutations on $N(v)$ for each $v\in V$.
-    Let $F: P \to \mathbb{N}$ be a computable function such that given a rotation system $R$ maps the number of faces in the embedding given by $R$. Listing~\ref{facetrace} gives an algorithm that computes $F$. The algorithm runs in $O(|E|)$
-
+    Let $F: P \to \mathbb{N}$ be a computable function such that given a rotation system $R$ maps the number of faces in the embedding given by $R$. Listing~\ref{facetrace} gives an algorithm that computes $F$. The algorithm runs in $O(|E|)$ time. 
+    So now given a rotation system (which corresponds to an embedding) we can compute the the number of faces in that embedding in polynomial time. 
+    Now the number of faces we compute through this formulation connects beautifully the genus of the graph, by the following equation $2 - 2\gamma(G) = |V| - |E| + f$ \cite{Massey91}.
+    Through this, once we have to maximize the number of faces we can compute the minimum genus of the graph. So our problem is now to find a rotation system that maximizes the number of faces in the corresponding embedding.
+ 
 \begin{lstlisting}[language=Python, caption = Facetracing Algorithm, label= facetrace]
-    def faceTracing(Graph, rotation_system):
-    D = list(getDirEdges(Graph))
+def faceTracing(Graph, rotation_system):
+    D = list(get_directed_edges(Graph))
     faces = 0 
     unused = D
     arc = unused[0]
     start = arc
     while len(unused) > 0:
         unused.remove(arc)
-        arc = (arc[1], rotation_system[arc[1]][(rotation_system[arc[1]].index(arc[0]) + 1)%len(rotation_system[arc[1]])])
+        arc = (arc[1], rotation_system[arc[1]][
+            (rotation_system[arc[1]].index(arc[0]) + 1)%len(rotation_system[arc[1]])
+            ])
         if arc == start:
             faces+=1
             if len(unused) <= 0:
@@ -209,8 +214,13 @@
             start = arc
     return faces
 \end{lstlisting}
-From this we obtained
 
+We apply an evolutionary algorithm to approximate the optimal rotation system. 
+Our chromosomes which are our candidate solutions are tuples corresponding to a rotation system. So each chromosome $C$ is a nested tuple, such that $C[v]$ corresponds to the permutation of outgoing edges around $v \in D(G)$.
+The crossover method used in our EA approach is the classic two-point cross-over. For parents $P_1$ and $P_2$, we construct child $C$ by taking permutation around half of the vertices of $P_1$ and the other half of $P_2$.
+The mutation scheme is as follows, we randomly select a vertex $v$ and then select two random edges going from that vertex, we then swap the position of those two edges creating a new permutation about $v$.
+The selection schemes implemented are \emph{Fitness propositional selection}, \emph{Ranked selection}, \emph{Tournament selection}, \emph{Truncation}, \emph{Random selection}. In section~\ref{sec: exp} we test multiple selection schemes and evaluate our results.
+So this gives us an EA formulation of the graph genus problem in the next section we will go over experimental testing evaluation of our algorithm.
 \section{Experimental Evaluation}\label{sec: exp}
 
 \section{Conclusion}\label{sec: con}
@@ -249,8 +259,8 @@ From this we obtained
 %         \item $\forall v \in V,\; u,w \in N(v), s.t\; u \neq w,\; p^v_{u, w}  \in \{0,1\}$
 %     \end{enumerate}
 %     Now the problem is finding satisfying assignment of $x_i$, $c_a^i$, and $p^v_{u, w}$, $\forall i \in \overline{f} \; \forall i \in \overline{f},\; \forall a\in A, \; \forall v \in V,\; u,w \in N(v), s.t\; u \neq w$ such that $\sum^{\overline{f}}_{i = i} x_i$ is maximized.
-%     Now the number of faces we compute through this formulation connects beautifully the genus of the graph, by the following equation $2 - 2\gamma(G) = |V| - |E| + f$ \cite{Massey91}.
-%     Through this once we have maximize the number of faces we can compute the minimum genus of the graph.
+    % Now the number of faces we compute through this formulation connects beautifully the genus of the graph, by the following equation $2 - 2\gamma(G) = |V| - |E| + f$ \cite{Massey91}.
+    % Through this once we have maximize the number of faces we can compute the minimum genus of the graph.
     
 %     Now we will use a meta-heuristic approach to minimize the number of faces in the integer linear program formulation of the graph genus problem. We will use an evolutionary algorithm to minimize the number of faces in the embedding of $G$ computed from the integer linear program formulation.
 %     Through this we compute the minimum genus of the graph. We will implement our algorithm in python and test our approach on various different graphs with known genera.
