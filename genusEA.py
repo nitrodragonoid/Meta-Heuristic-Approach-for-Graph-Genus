@@ -539,8 +539,13 @@ class EA:
 
             current_best, current_max_fitness = self.best()
             current_avg_fitness = self.average_fitness()
+            if current_avg_fitness <= 0:
+                print("masla")
+                for i in self.population:
+                    print(self.population[i],":",i)
+                    return
             best_so_far.append(self.EulerianCharacteristics(self.graph, current_max_fitness))
-            avg_so_far.append(self.EulerianCharacteristics(self.graph, current_avg_fitness))
+            # avg_so_far.append(self.EulerianCharacteristics(self.graph, current_avg_fitness))
 
         embedding, faces = self.best()
         print("Embbedding is:",embedding)
@@ -550,10 +555,10 @@ class EA:
         generations = np.arange(1, self.generation + 1)
         plt.figure(figsize=(10, 5))
         plt.plot(generations, best_so_far, label='Best Fitness So Far', color='red')
-        plt.plot(generations, avg_so_far, label='Average Fitness So Far', color='blue')
+        # plt.plot(generations, avg_so_far, label='Average Fitness So Far', color='blue')
         plt.title('Fitness Over Generations')
         plt.xlabel('Generation')
-        plt.ylabel('Fitness')
+        plt.ylabel('Fitness (genus from embedding)')
         plt.legend()
         plt.grid(True)
         plt.show()
@@ -864,6 +869,10 @@ k5 = {
 }
 
 Test = EA( petersen, size = 100, generations = 1000, offsprings =  20, rate = 0.7, parent_scheme = 1, surviver_scheme = 4, tournament_size= 10)
+# Test.get_data("qa194.tsp")
+Test.evolution()
+
+Test = EA( k8, size = 100, generations = 1000, offsprings =  20, rate = 0.7, parent_scheme = 1, surviver_scheme = 4, tournament_size= 10)
 # Test.get_data("qa194.tsp")
 Test.evolution()
 
