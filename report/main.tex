@@ -226,50 +226,80 @@ Our chromosomes which are our candidate solutions are tuples corresponding to a 
 The crossover method used in our EA approach is the classic two-point cross-over. For parents $P_1$ and $P_2$, we construct child $C$ by taking permutation around half of the vertices of $P_1$ and the other half of $P_2$.
 The mutation scheme is as follows, we randomly select a vertex $v$ and then select two random edges going from that vertex, we then swap the position of those two edges creating a new permutation about $v$.
 The selection schemes implemented are \emph{Fitness propositional selection}, \emph{Ranked selection}, \emph{Tournament selection}, \emph{Truncation}, \emph{Random selection}. In section~\ref{sec: exp} we test multiple selection schemes and evaluate our results.
-So this gives us an EA formulation of the graph genus problem in the next section we will go over experimental testing evaluation of our algorithm.
+So this gives us an EA formulation of the graph genus problem in the next section we will go over the experimental testing evaluation of our algorithm.
+
 \section{Experimental Evaluation}\label{sec: exp}
 
+We now test our algorithm on seven graphs, $k_4$ with $\gamma(k_4) = 0$, $k_5$ with $\gamma(k_5) = 1$, $k_7$ with $\gamma(k_7) = 1$, 
+$k_8$ with $\gamma(k_8) = 2$, $k_9$ with $\gamma(k_9) = 3$, $k_{10}$ with $\gamma(k_{10}) = 4$,  $petersen\;graph$ with $\gamma(petersen\;graph) = 1$,
+and $k_{14,12}$ with $\gamma(k_{14,12}) = 30$.
+
+The best results were obtained with fitness promotional parent selection scheme and truncation survivor selection. Our mutation rate was 0.7.
+Our experimental results are shown in figures~5, figures~6, figures~7, figures~8, figures~9, figures~10, figures~11, and figures~12 shows the plots obtained from our experiments. 
+We see that on smaller graphs we are reaching the minimum genus while on larger graphs we see a convergence pattern.
+% ~\ref{tests3}~\ref{tests4}~\ref{tests5}~\ref{tests6}~\ref{tests7}~\ref{tests8}.
+
+
+\begin{figure}[!tbh]
+    \centering
+    \label{tests1}
+    \includegraphics[scale = 0.5]{petersen.png}
+    \caption{Plots obtained from our algorithm tested on \emph{petersen graph}.}
+\end{figure}
+
+\begin{figure}[!tbh]
+    \centering
+    \label{tests2}
+    \includegraphics[scale = 0.5]{k4.png}
+    \caption{Plots obtained from our algorithm tested on $k_4$ graph.}
+\end{figure}
+
+\begin{figure}[!tbh]
+    \centering
+    \label{tests3}
+    \includegraphics[scale = 0.5]{k5.png}
+    \caption{Plots obtained from our algorithm tested on $k_5$ graph.}
+\end{figure}
+\begin{figure}[!tbh]
+    \centering
+    \label{tests4}
+    \includegraphics[scale = 0.5]{k7.png}
+    \caption{Plots obtained from our algorithm tested on $k_7$ graph.}
+\end{figure}
+\begin{figure}[!tbh]
+    \centering
+    \label{tests5}
+    \includegraphics[scale = 0.5]{k8.png}
+    \caption{Plots obtained from our algorithm tested on $k_8$ graph.}
+\end{figure}
+\begin{figure}[!tbh]
+    \centering
+    \label{tests6}
+    \includegraphics[scale = 0.5]{k9.png}
+    \caption{Plots obtained from our algorithm tested on $k_9$ graph.}
+\end{figure}
+\begin{figure}[!tbh]
+    \centering
+    \label{tests7}
+    \includegraphics[scale = 0.5]{k10.png}
+    \caption{Plots obtained from our algorithm tested on $k_10$ graph.}
+\end{figure}
+\begin{figure}[!tbh]
+    \centering
+    \label{tests8}
+    \includegraphics[scale = 0.5]{k1412_2.png}
+    \caption{Plots obtained from our algorithm tested on $k_{14,12}$ graph.}
+\end{figure}
+
+
+
 \section{Conclusion}\label{sec: con}
+In this project, we provided the first meta-heuristic approach to the graph genus problem. 
+We applied an evolutionary approach to the problem and tested our algorithm experimentally.
+As the problem is computationally expensive even for small graphs, we see that our formulation gives a practical algorithm to solve the graph genus problem.
+In future work, we can tune our hyperparameters and test our algorithm for much larger graphs.
 
-
-% \section{Problem statement}\label{sec3}
-%     As we saw the genus problem is quite a difficult problem to solve, and we have that no exact polynomial time solution exists for the problem unless $\classNP = \classP$.
-%     We would apply a meta-heuristic approach to solve the graph genus problem. More specifically we want to use an evolutionary algorithm to solve the graph genus problem.
-    
-%     For this approach, it is of interest to us to formulate the problem as a combinatorial optimization problem. 
-%     Throughout history, many such approaches have been made most famously the formulation given by Filotti in 1979 \cite{Filotti79}. However Wendy Myrvold and William Kocay showed that there is a flaw in the formulation by Filotti, they also identified errors in many famous algorithms which try to solve the graph genus problem \cite{Myrvold11}.
-%     However many other valid formulation exists, for example the formulation given by G. Brinkmann \cite{brinkmann20}, Marston Conder and Klara Stokes \cite{Conder19}, Stephan Beyer and Markus Chimani and Ivo Hedtke and Michal Kotrbcik \cite{Beyer16}, among others.
-    
-%     The formulation of interest to us is the one by Stephan Beyer .et al \cite{Beyer16}. Stephan Beyer gave two formulation of the problem of computing the number of faces in a valid embedding on a graph $G$ on surface $X$ of genus $g$, the first formulation, formulates the problem as a Boolean satisfiability problem.
-%     A boolean formula $\phi$ is called satifiable if there is a truth assignment of the variables of $\phi$ such that $\phi$ evaluates to true.
-%     The formulation constructs a boolean formula from the graph and a given number of faces $f$. The formula is satifiable if and only if we have that an embedding of $f$ faces exits for $G$. The over formulation is of more interest to us. 
-%     The second formulation, formulates the problem as an integer linear program problem. The program is constructed from the input graph.
-%     The objective function is to maximize the number of faces. The detailed problem formulation is as follows:
-%     Let $G = (V, E)$ be a graph, let $A = \{(u, v), (v, u) | {u,v} \in E\}$ here is the set of two directed edges for each edge in $E$.
-%     Let $\overline{f}$ be an upper bound on number of faces, for each $i \in \overline{f}$, we have a binary variable $x_i$ that is
-%     1 if and only if the $i^{\text{th}}$ face exists in a embedding of $G$, and we have a binary variable $c_a^i$, for each $a \in A$, that is 1
-%     if and only if polygonal arc $a$ (corresponding to some edge $e$) is on the boundary of $i^{\text{th}}$ face. 
-%     For each vertex $v \in V$ and neighbors $u, w \in N(v)$ such that $u \neq w$, we have a binary variable $p^v_{u,w}$, which is 1 if and only if $w$ is a successor of $u$ in rotation at $v$. So now the integer linear program formulation is as follows:
-%     \\$\displaystyle{\text{max } \sum^{\overline{f}}_{i = i} x_i, \text{ such that,}}$
-%     \begin{enumerate}
-%         \item $\forall i \in \overline{f},\; x_i  \leq \frac{1}{3}\sum_{a \in A} c^i_a$
-%         \item $\forall a \in A,\; \frac{1}{3}\sum_{i = 1}^{\overline{f}} c^i_a = 1$
-%         \item $\forall i \in \overline{f} \;\forall v \in V,\; \sum_{a \in d^+(v)} c^i_a = \sum_{a \in d^-(v)} c^i_a$
-%         \item $\forall i \in \overline{f} \;\forall v \in V,\; u,w \in N(v), s.t\; u \neq w,\; c^i_{vw} \geq c^i_{uv} + p^v_{u,w} - 1$
-%         \item $\forall i \in \overline{f} \;\forall v \in V,\; u,w \in N(v), s.t\; u \neq w,\; c^i_{uv} \geq c^i_{vw} + p^v_{u,w} - 1$
-%         \item $\forall v \in V, u \in N(v), \; \sum_{w \in N(v), u \neq w} p^v_{u, w} = 1$
-%         \item $\forall v \in V, w \in N(v), \; \sum_{w \in N(v), u \neq w} p^v_{u, w} = 1$
-%         \item $\forall v \in V, \emptyset \neq U \subseteq N(v), \; \sum_{u \in U}\sum_{w \in N(v)\setminus U} p^v_{u, w} \geq 1$
-%         \item $\forall i \in \overline{f},\; x_i  \in \{0,1\}$
-%         \item $\forall i \in \overline{f},\; \forall a\in A,\; c_a^i  \in \{0,1\}$
-%         \item $\forall v \in V,\; u,w \in N(v), s.t\; u \neq w,\; p^v_{u, w}  \in \{0,1\}$
-%     \end{enumerate}
-%     Now the problem is finding satisfying assignment of $x_i$, $c_a^i$, and $p^v_{u, w}$, $\forall i \in \overline{f} \; \forall i \in \overline{f},\; \forall a\in A, \; \forall v \in V,\; u,w \in N(v), s.t\; u \neq w$ such that $\sum^{\overline{f}}_{i = i} x_i$ is maximized.
-    % Now the number of faces we compute through this formulation connects beautifully the genus of the graph, by the following equation $2 - 2\gamma(G) = |V| - |E| + f$ \cite{Massey91}.
-    % Through this once we have maximize the number of faces we can compute the minimum genus of the graph.
-    
-%     Now we will use a meta-heuristic approach to minimize the number of faces in the integer linear program formulation of the graph genus problem. We will use an evolutionary algorithm to minimize the number of faces in the embedding of $G$ computed from the integer linear program formulation.
-%     Through this we compute the minimum genus of the graph. We will implement our algorithm in python and test our approach on various different graphs with known genera.
+All the code for our algorithm can be found on our git repository: \href{https://github.com/nitrodragonoid/Meta-Heuristic-Approach-for-Graph-Genus.git}{\url{https://github.com/nitrodragonoid/Meta-Heuristic-Approach-for-Graph-Genus.git}}
 
 \bibliographystyle{plain} 
 \bibliography{ref}
